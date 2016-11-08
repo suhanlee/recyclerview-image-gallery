@@ -19,7 +19,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String DIRECTORY = "/sdcard/";
     private RecyclerView mRecyclerView;
 
     @Override
@@ -31,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         mRecyclerView.setHasFixedSize(true);
-//        List<String> mFiles = findMediaFiles(); // media file or
-        List<String> mFiles = findImageFileInDirectory(DIRECTORY); // local file
+        List<String> mFiles = findMediaFiles(); // media file or
+//        List<String> mFiles = findImageFileInDirectory(DIRECTORY); // local file
         mRecyclerView.setAdapter(new GalleryAdapter(this, mFiles));
     }
 
