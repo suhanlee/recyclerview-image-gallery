@@ -1,0 +1,12 @@
+# Local configuration files
+local.properties
+
+#IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Gralde folder
+.gradle
+build
