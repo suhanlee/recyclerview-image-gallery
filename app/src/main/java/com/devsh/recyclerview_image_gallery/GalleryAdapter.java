@@ -25,12 +25,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.CustomVi
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_list_row, parent, false);
-        GalleryAdapter.CustomViewHolder viewHolder = new GalleryAdapter.CustomViewHolder(view);
-        return viewHolder;
+        return new GalleryAdapter.CustomViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, final int position) {
+    public void onBindViewHolder(CustomViewHolder holder, int position) {
         Glide
                 .with(mActivity)
                 .load(mFileList.get(position))
@@ -38,10 +37,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.CustomVi
                 .centerCrop()
                 .into(holder.imageResource);
 
+        final int itemPosition = holder.getAdapterPosition();
         holder.imageResource.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mActivity, mFileList.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity, mFileList.get(itemPosition), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -51,9 +51,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.CustomVi
         return mFileList.size();
     }
 
-    public static class CustomViewHolder extends RecyclerView.ViewHolder {
-        protected ImageView imageResource;
-        public CustomViewHolder(View itemView) {
+    static class CustomViewHolder extends RecyclerView.ViewHolder {
+        final ImageView imageResource;
+        CustomViewHolder(View itemView) {
             super(itemView);
             this.imageResource = (ImageView) itemView.findViewById(R.id.image_resource);
         }
